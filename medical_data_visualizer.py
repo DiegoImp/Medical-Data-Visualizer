@@ -30,7 +30,7 @@ def draw_cat_plot():
                 hue='value', col='cardio', kind='bar', ci=None)
     # Get the figure for the output
     fig = sns.catplot(data=df_cat, x='variable', y='total',
-                      hue='value', col='cardio', kind='bar', ci=None)
+                      hue='value', col='cardio', kind='bar', errorbar=None)
 
     # Do not modify the next two lines
     fig.savefig('catplot.png')
@@ -50,11 +50,11 @@ def draw_heat_map():
     mask = np.triu(corr)
 
     # Set up the matplotlib figure
-    fig, ax = plt.subplots(figsize=(12, 12))
+    fig = plt.subplots(figsize=(12, 12))
 
     # Draw the heatmap with 'sns.heatmap()'
-    ax = sns.heatmap(corr, annot=True, fmt='.1f', mask=mask, vmin=-0.08,
-                     vmax=.24, center=0, square=True, linewidths=.5, cbar_kws={'shrink': .5})
+    ax = sns.heatmap(corr, annot=True, fmt='.1f', mask=mask, vmax=0.30,
+                     center=0, square=True, linewidths=.5, cbar_kws={'shrink': .5})
 
     # Do not modify the next two lines
     fig.savefig('heatmap.png')
